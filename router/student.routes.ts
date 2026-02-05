@@ -5,6 +5,7 @@ import {
   getAllStudents,
   getOneStudent,
   leftStudent,
+  statistics,
   UpdateStudent,
 } from "../controller/student.controller.js";
 
@@ -16,5 +17,6 @@ studentRouter.post("/add_student", addStudent as RequestHandler);
 studentRouter.put("/update_student", UpdateStudent as RequestHandler);
 studentRouter.delete("/delete_student", deleteStudent as RequestHandler);
 studentRouter.put("/left_students", leftStudent as RequestHandler);
+studentRouter.get("/statistics", statistics as RequestHandler);
 
 export default studentRouter;
