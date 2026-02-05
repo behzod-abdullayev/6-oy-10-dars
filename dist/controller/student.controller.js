@@ -151,15 +151,15 @@ export const statistics = async (req, res, next) => {
     try {
         const stat = await Student.findAll({
             attributes: [
-                [sequelize.literal(`DATE_TRUNC ('month', "joinedAt")`), "month"],
-                [sequelize.fn("COUNT", sequelize.col("id")), "totalJOined"],
-                [sequelize.literal(`SUM(case when "leftAt" is not null 1 else 0 end)`), "totalLeft"]
+                [sequelize.literal(`DATE_TRUNC('month', "joinedAt")`), "month"],
+                [sequelize.fn("COUNT", sequelize.col("id")), "totalJoined"],
+                [sequelize.literal(`SUM(CASE WHEN "leftAt" IS NOT NULL THEN 1 ELSE 0 END)`), "totalLeft"]
             ],
-            group: [],
-            order: [],
+            group: [sequelize.literal(`DATE_TRUNC('month', "joinedAt")`)],
+            order: [[sequelize.literal(`DATE_TRUNC('month', "joinedAt")`), "ASC"]],
             raw: true
         });
-        res.status(200).json(stat);
+        return res.status(200).json(stat);
     }
     catch (error) {
         return res.status(500).json({
