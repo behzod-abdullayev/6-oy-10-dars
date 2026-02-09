@@ -8,5 +8,7 @@ export declare class Student extends Model {
     image_url: string;
     joinedAt: Date;
     leftAt?: Date;
+    added_by: number;
+    group_id: number;
 }
 //# sourceMappingURL=student.model.d.ts.map

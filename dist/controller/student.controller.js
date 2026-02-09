@@ -1,7 +1,7 @@
-import { Student } from "../model/student.model.js";
 import { Op } from "sequelize";
 import sequelize from "../config/config.js";
-Student.sync({ force: false });
+import { Student } from "../model/associate.js";
+Student.sync({ force: true });
 export const getAllStudents = async (req, res, next) => {
     try {
         const page = Number(req.query.page) || 1;

@@ -1,0 +1,1 @@
+{"version":3,"file":"teacher.model.d.ts","sourceRoot":"","sources":["../../model/teacher.model.ts"],"names":[],"mappings":"AAAA,OAAO,EAAa,KAAK,EAAE,MAAM,WAAW,CAAC;AAE7C,qBAAa,OAAQ,SAAQ,KAAK;IAChC,SAAS,EAAG,MAAM,CAAC;IACnB,YAAY,EAAG,MAAM,CAAC;IACtB,UAAU,EAAG,MAAM,CAAC;IACpB,SAAS,EAAG,MAAM,CAAC;IACnB,QAAQ,EAAG,MAAM,CAAC;CACnB"}

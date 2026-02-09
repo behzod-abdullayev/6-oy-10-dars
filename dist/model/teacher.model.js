@@ -1,18 +1,13 @@
 import { DataTypes, Model } from "sequelize";
 import sequelize from "../config/config.js";
-export class Student extends Model {
+export class Teacher extends Model {
     full_name;
     phone_number;
     profession;
-    parent_name;
-    parent_number;
     image_url;
-    joinedAt;
-    leftAt;
     added_by;
-    group_id;
 }
-Student.init({
+Teacher.init({
     id: {
         type: DataTypes.INTEGER,
         autoIncrement: true,
@@ -30,26 +25,9 @@ Student.init({
         type: DataTypes.STRING,
         allowNull: false,
     },
-    parent_name: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
-    parent_number: {
-        type: DataTypes.STRING,
-        allowNull: false,
-    },
     image_url: {
         type: DataTypes.STRING,
         allowNull: false,
-    },
-    joinedAt: {
-        type: DataTypes.DATE,
-        allowNull: false,
-    },
-    leftAt: {
-        type: DataTypes.DATE,
-        allowNull: true,
-        defaultValue: null
     },
     added_by: {
         type: DataTypes.INTEGER,
@@ -59,17 +37,9 @@ Student.init({
             key: "id"
         }
     },
-    group_id: {
-        type: DataTypes.INTEGER,
-        allowNull: false,
-        references: {
-            model: "groups",
-            key: "id"
-        }
-    },
 }, {
-    tableName: "students",
+    tableName: "teachers",
     timestamps: true,
     sequelize,
 });
-//# sourceMappingURL=student.model.js.map
+//# sourceMappingURL=teacher.model.js.map

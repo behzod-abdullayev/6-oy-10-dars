@@ -1,8 +1,8 @@
-import type { NextFunction, request, Request, Response } from "express";
-import { Student } from "../model/student.model.js";
+import type { NextFunction, Request, Response } from "express";
 import type { CreateStudentDto, UpdateStudentDto } from "../dto/student.dto.js";
 import { Op } from "sequelize";
 import sequelize from "../config/config.js";
+import { Student } from "../model/associate.js";
 
 Student.sync({ force: false });
 
@@ -78,7 +78,7 @@ export const getOneStudent = async (req: Request, res: Response, next: NextFunct
 
 export const addStudent = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
   try {
-    const { full_name, phone_number, profession, parent_name, parent_number, image_url } = req.body as CreateStudentDto;
+    const { full_name, phone_number, profession, parent_name, parent_number, image_url, added_by, group_id } = req.body as CreateStudentDto;
     await Student.create({
       full_name,
       phone_number,
@@ -87,6 +87,8 @@ export const addStudent = async (req: Request, res: Response, next: NextFunction
       parent_number,
       image_url,
       joinedAt: new Date(),
+      added_by,
+      group_id
     });
     res.status(201).json({
       message: "created",
@@ -101,7 +103,7 @@ export const addStudent = async (req: Request, res: Response, next: NextFunction
 export const UpdateStudent = async (req: Request, res: Response, next: NextFunction): Promise<Response | void> => {
   try {
     const { id } = req.params;
-    const { full_name, phone_number, profession, parent_name, parent_number, image_url, leftAt, joinedAt } =
+    const { full_name, phone_number, profession, parent_name, parent_number, image_url, leftAt, joinedAt, added_by, group_id } =
       req.body as UpdateStudentDto;
     const newId = Number(id as string);
     const foundedStudent = await Student.findByPk(newId);
@@ -113,7 +115,7 @@ export const UpdateStudent = async (req: Request, res: Response, next: NextFunct
     }
 
     await Student.update(
-      { full_name, phone_number, profession, parent_name, parent_number, image_url, leftAt, joinedAt },
+      { full_name, phone_number, profession, parent_name, parent_number, image_url, leftAt, joinedAt, added_by, group_id },
       { where: { id: newId } },
     );
     res.status(200).json({
